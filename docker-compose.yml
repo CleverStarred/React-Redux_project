@@ -1,0 +1,16 @@
+local: &local
+  image: brunolm/node-image:6.2.0-onbuild
+  volumes:
+    - .:/usr/src/app
+  ports:
+    - 3000
+  environment: &localEnv
+    NODE_ENV: development
+    VIRUTAL_PORT: 3000
+    VIRTUAL_HOST: ts-redux.local.codingwise.com
+
+production:
+  <<: *local
+  environment:
+    <<: *localEnv
+    NODE_ENV: production
